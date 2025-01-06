@@ -1,0 +1,77 @@
+-- if you're looking for the rest of the plugins, they have their own files!
+return {
+  {
+    "rcarriga/nvim-notify",
+    event = "VeryLazy",
+    opts = {
+      background_colour = "#000000",
+      max_width = 60,
+      render = "wrapped-compact",
+    },
+  },
+  --autopair and autotag for web dev
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    dependencies = "windwp/nvim-ts-autotag",
+    opts = {},
+  },
+  {
+    "lewis6991/gitsigns.nvim",
+    config = function()
+      require("config.gitsigns")
+    end,
+  },
+  {
+    "akinsho/git-conflict.nvim",
+    event = "VeryLazy",
+    version = "*",
+    config = true,
+  },
+  {
+    "folke/which-key.nvim",
+    event = "VeryLazy",
+    config = function()
+      require("config.which-key")
+    end,
+  },
+  -- Auto format tools
+  { "sbdchd/neoformat",          cmd = { "Neoformat" } },
+  -- Git command inside vim
+  -- Better git log display
+  { "rbong/vim-flog",            cmd = { "Flog" } },
+  { "akinsho/git-conflict.nvim", version = "*",        config = true },
+  {
+    "ruifm/gitlinker.nvim",
+    event = "User InGitRepo",
+    config = function()
+    end,
+  },
+  -- Show git change (change, delete, add) signs in vim sign column
+  {
+    "sindrets/diffview.nvim",
+  },
+  {
+    "declancm/cinnamon.nvim",
+    event = "BufReadPre",
+    opts = {
+      keymaps = {
+        basic = true,
+        extra = true,
+      },
+      options = {
+        delay = 1,
+        step_size = {
+          -- Number of cursor/window lines moved per step
+          vertical = 3,
+          -- Number of cursor/window columns moved per step
+          horizontal = 2,
+        },
+      },
+    },
+  },
+  {
+    "ThePrimeagen/vim-be-good",
+    cmd = "VimBeGood",
+  },
+}
