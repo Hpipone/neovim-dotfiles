@@ -17,12 +17,6 @@ return {
     opts = {},
   },
   {
-    "lewis6991/gitsigns.nvim",
-    config = function()
-      require("config.gitsigns")
-    end,
-  },
-  {
     "akinsho/git-conflict.nvim",
     event = "VeryLazy",
     version = "*",
@@ -32,7 +26,6 @@ return {
     "folke/which-key.nvim",
     event = "VeryLazy",
     config = function()
-      require("config.which-key")
     end,
   },
   -- Auto format tools
