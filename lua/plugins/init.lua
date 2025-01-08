@@ -22,12 +22,10 @@ return {
     version = "*",
     config = true,
   },
-  -- {
-  --   "folke/which-key.nvim",
-  --   event = "VeryLazy",
-  --   config = function()
-  --   end,
-  -- },
+  {
+    "folke/which-key.nvim",
+    lazy = true,
+  },
   {
     "norcalli/nvim-colorizer.lua",
     enable = true,

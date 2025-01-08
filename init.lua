@@ -1,6 +1,5 @@
 require("Hpipone.set")
 require("Hpipone.keymaps")
-
 -- load plugins if not vscode
 if not vim.g.vscode then
   -- bootstrap lazy.nvim
