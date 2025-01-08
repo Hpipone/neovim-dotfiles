@@ -22,11 +22,18 @@ return {
     version = "*",
     config = true,
   },
+  -- {
+  --   "folke/which-key.nvim",
+  --   event = "VeryLazy",
+  --   config = function()
+  --   end,
+  -- },
   {
-    "folke/which-key.nvim",
-    event = "VeryLazy",
+    "norcalli/nvim-colorizer.lua",
+    enable = true,
     config = function()
-    end,
+      require("colorizer").setup()
+    end
   },
   -- Auto format tools
   { "sbdchd/neoformat",          cmd = { "Neoformat" } },
