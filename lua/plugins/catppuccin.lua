@@ -26,6 +26,9 @@ return {
     vim.cmd.colorscheme("catppuccin")
   end,
 } -- theme
+--
+--
+-- Punyanya crazydog aka devaslife
 -- return
 -- {
 --   {

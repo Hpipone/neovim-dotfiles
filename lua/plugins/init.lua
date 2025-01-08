@@ -25,6 +25,10 @@ return {
   {
     "folke/which-key.nvim",
     lazy = true,
+    event = "VeryLazy",
+    config = function()
+      require("which-key")
+    end,
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -34,11 +38,17 @@ return {
     end
   },
   -- Auto format tools
-  { "sbdchd/neoformat",          cmd = { "Neoformat" } },
+  {
+    "sbdchd/neoformat",
+    cmd = { "Neoformat" }
+  },
   -- Git command inside vim
   -- Better git log display
-  { "rbong/vim-flog",            cmd = { "Flog" } },
-  { "akinsho/git-conflict.nvim", version = "*",        config = true },
+  {
+    "rbong/vim-flog",
+    cmd = { "Flog" }
+  },
+  { "akinsho/git-conflict.nvim", version = "*", config = true },
   {
     "ruifm/gitlinker.nvim",
     event = "User InGitRepo",
@@ -67,6 +77,26 @@ return {
         },
       },
     },
+  },
+
+{
+		"dinhhuy258/git.nvim",
+		event = "BufReadPre",
+		opts = {
+			keymaps = {
+				-- Open blame window
+				blame = "<Leader>gb",
+				-- Open file/folder in git repository
+				browse = "<Leader>go",
+			},
+		},
+	},
+  {
+    "nvim-cmp",
+    dependencies = { "hrsh7th/cmp-emoji" },
+    opts = function(_, opts)
+      table.insert(opts.sources, { name = "emoji" })
+    end,
   },
   {
     "ThePrimeagen/vim-be-good",
