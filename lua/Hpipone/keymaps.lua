@@ -13,7 +13,7 @@ keymap.set("n", "_", "<C-x>")
 keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "menghilangkan hightlight search" })
 
 -- Quit all opened buffers
--- keymap.set("n", "<leader>q", ":qa!<cr>", { silent = true, desc = "quit nvim" })
+keymap.set("n", "<leader>q", ":qa!<cr>", { silent = true, desc = "quit nvim" })
 
 -- split windows
 keymap.set("n", "ss", ":split<CR><C-w>w", { silent = true, desc = "mindahin nvim ke sebelah atas ato bawah" })
