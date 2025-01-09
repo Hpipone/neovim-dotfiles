@@ -9,6 +9,20 @@ return {
       render = "wrapped-compact",
     },
   },
+  {
+    'brianhuster/live-preview.nvim',
+    dependencies = {
+      -- You can choose one of the following pickers
+      'nvim-telescope/telescope.nvim',
+      'ibhagwan/fzf-lua',
+      'echasnovski/mini.pick',
+    },
+  },
+  {
+    "vhyrro/luarocks.nvim",
+    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
+    config = true,
+  },
   --autopair and autotag for web dev
   {
     "windwp/nvim-autopairs",
@@ -26,9 +40,6 @@ return {
     "folke/which-key.nvim",
     lazy = true,
     event = "VeryLazy",
-    config = function()
-      require("which-key")
-    end,
   },
   {
     "norcalli/nvim-colorizer.lua",
@@ -79,18 +90,18 @@ return {
     },
   },
 
-{
-		"dinhhuy258/git.nvim",
-		event = "BufReadPre",
-		opts = {
-			keymaps = {
-				-- Open blame window
-				blame = "<Leader>gb",
-				-- Open file/folder in git repository
-				browse = "<Leader>go",
-			},
-		},
-	},
+  {
+    "dinhhuy258/git.nvim",
+    event = "BufReadPre",
+    opts = {
+      keymaps = {
+        -- Open blame window
+        blame = "<Leader>gb",
+        -- Open file/folder in git repository
+        browse = "<Leader>go",
+      },
+    },
+  },
   {
     "nvim-cmp",
     dependencies = { "hrsh7th/cmp-emoji" },
