@@ -7,7 +7,7 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "x", '"_x')
 --[[ keymap.set("n", "<C-w>", "<C-ww>") ]]
 keymap.set("n", "<TAB>", ":NvimTreeToggle<CR>", { silent = true, desc = "tab nvim tree sitter" })
-keymap.set("n", "<leader>l", ":Livepreview start<CR>", { silent = true, desc = "livepreview startto" })
+keymap.set("n", "<leader>l", ":LivePreview start<CR>", { silent = true, desc = "livepreview startto" })
 
 
 keymap.set("n", "+", "<C-a>")
