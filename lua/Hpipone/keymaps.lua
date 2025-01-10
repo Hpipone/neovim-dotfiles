@@ -7,13 +7,15 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "x", '"_x')
 --[[ keymap.set("n", "<C-w>", "<C-ww>") ]]
 keymap.set("n", "<TAB>", ":NvimTreeToggle<CR>", { silent = true, desc = "tab nvim tree sitter" })
+keymap.set("n", "<leader>l", ":Livepreview start<CR>", { silent = true, desc = "livepreview startto" })
+
 
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "_", "<C-x>")
 keymap.set("n", "<leader>h", ":nohlsearch<CR>", { desc = "menghilangkan hightlight search" })
 
 -- Quit all opened buffers
-keymap.set("n", "<leader>q", ":qa!<cr>", { silent = true, desc = "quit nvim" })
+keymap.set("n", "<leader>q", ":qa!<cr>", { silent = true, desc = "force quit nvim" })
 
 -- split windows
 keymap.set("n", "ss", ":split<CR><C-w>w", { silent = true, desc = "mindahin nvim ke sebelah atas ato bawah" })
