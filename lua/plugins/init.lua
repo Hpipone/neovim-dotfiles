@@ -2,7 +2,7 @@
 return {
   {
     "rcarriga/nvim-notify",
-    event = "false",
+    event = "VeryLazy",
     opts = {
       background_colour = "#000000",
       max_width = 60,
@@ -104,13 +104,13 @@ return {
   --     table.insert(opts.sources, { name = "emoji" })
   --   end,
   -- },
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   -- follow latest release.
-  --   version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-  --   -- install jsregexp (optional!).
-  --   --build = "make install_jsregexp"
-  -- },
+  {
+    "L3MON4D3/LuaSnip",
+    -- follow latest release.
+    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+    -- install jsregexp (optional!).
+    --build = "make install_jsregexp"
+  },
   {
     "ThePrimeagen/vim-be-good",
     cmd = "VimBeGood",

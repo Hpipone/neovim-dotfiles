@@ -5,7 +5,6 @@ return {
   dependencies = {
     "onsails/lspkind.nvim",
     "L3MON4D3/LuaSnip",
-    "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     "xzbdmw/colorful-menu.nvim", },
   event = "VeryLazy",
