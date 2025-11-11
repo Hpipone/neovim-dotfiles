@@ -2,7 +2,7 @@
 return {
   {
     "rcarriga/nvim-notify",
-    event = "VeryLazy",
+    event = "false",
     opts = {
       background_colour = "#000000",
       max_width = 60,
@@ -18,12 +18,7 @@ return {
       'echasnovski/mini.pick',
     },
   },
-  {
-    "vhyrro/luarocks.nvim",
-    priority = 1000, -- Very high priority is required, luarocks.nvim should run as the first plugin in your config.
-    config = true,
-  },
-  --autopair and autotag for web dev
+    --autopair and autotag for web dev
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",

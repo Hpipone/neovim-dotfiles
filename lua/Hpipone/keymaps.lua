@@ -1,14 +1,13 @@
 local keymap = vim.keymap
 
 -- stolen from thePrimeAgen
-keymap.set("v", "J", ":m '>+1<CR>gv=gv")
-keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+keymap.set("v", "J", ":m '>+3<CR>gv=gv")
+keymap.set("v", "K", ":m '<0<CR>gv=gv")
 
 keymap.set("n", "x", '"_x')
 --[[ keymap.set("n", "<C-w>", "<C-ww>") ]]
 --keymap.set("n", "<TAB>", ":NvimTreeToggle<CR>", { silent = true, desc = "tab nvim tree sitter" })
 keymap.set("n", "<leader>p", ":LivePreview start<CR>", { silent = true, desc = "livepreview startto" })
-
 
 keymap.set("n", "+", "<C-a>")
 keymap.set("n", "_", "<C-x>")
@@ -22,13 +21,13 @@ keymap.set("n", "ss", ":split<CR><C-w>w", { silent = true, desc = "mindahin nvim
 keymap.set("n", "sv", ":vsplit<CR><C-w>w", { silent = true, desc = "mindahin nvim ke sebelah kanan ato kiri" })
 
 -- switch windows
-keymap.set("n", "<C-l>", "<C-ww>")
+keymap.set("n", "<C-k>", "<C-ww>")
 
 -- resize window
-keymap.set("n", "<C-w><left>", ":vertical resize -2<CR>")
-keymap.set("n", "<C-w><right>", ":vertical resize +2<CR>")
-keymap.set("n", "<C-w><up>", ":resize +2<CR>")
-keymap.set("n", "<C-w><down>", ":resize -2<CR>")
+keymap.set("n", "<C-w><left>", ":vertical resize 0<CR>")
+keymap.set("n", "<C-w><right>", ":vertical resize +4<CR>")
+keymap.set("n", "<C-w><up>", ":resize +4<CR>")
+keymap.set("n", "<C-w><down>", ":resize 0<CR>")
 
 -- tabs
 local tabopts = { silent = true }

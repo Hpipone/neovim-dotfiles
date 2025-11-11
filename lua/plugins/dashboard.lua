@@ -15,7 +15,9 @@ return {
         easing = "quad",
       },
     },
-
+    bigfile = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = true },
     lazygit = { enabled = true },
 
     dashboard = {
