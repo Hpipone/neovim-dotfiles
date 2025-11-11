@@ -1,51 +1,64 @@
--- from https://github.com/scottmckendry/windots/blob/main/nvim/lua/plugins/alpha.lua
 return {
-  "goolord/alpha-nvim",
+  "folke/snacks.nvim",
+  priority = 1000,
   lazy = false,
-  opts = function()
-    local dashboard = require("alpha.themes.dashboard")
-    local logo = [[
- _   _       _
-| | | |     (_)
-| |_| |_ __  _ _ __   ___  _ __   ___
-|  _  | '_ \| | '_ \ / _ \| '_ \ / _ \
-| | | | |_) | | |_) | (_) | | | |  __/
-\_| |_| .__/|_| .__/ \___/|_| |_|\___|
-      | |     | |
-      |_|     |_|
-]]
+  ---@type snacks.Config
+  opts = {
+    scroll = {
+      animate = {
+        duration = { step = 10, total = 250 },
+        easing = "linear",
+      },
 
-    dashboard.section.header.val = vim.split(logo, "\n")
-    dashboard.section.buttons.val = {
-      dashboard.button("<leader>ff", " " .. " Find file", ":Telescope find_files <CR>"),
-      dashboard.button("r", " " .. " Recent files", ":Telescope oldfiles <CR>"),
-      dashboard.button("<leader>fg", " " .. " Find text", ":Telescope live_grep <CR>"),
-      dashboard.button("<tab>", " " .. " Explore", ":NvimTreeToggle<CR>"),
-      dashboard.button("l", "󰒲 " .. " Lazy", ":Lazy<CR>"),
-      dashboard.button("qa", " " .. " Quit", ":qa<CR>"),
-    }
+      animate_repeats = {
+        duration = { step = 5, total = 50 },
+        easing = "quad",
+      },
+    },
 
-    -- set highlight
-    for _, button in ipairs(dashboard.section.buttons.val) do
-      button.opts.hl = "AlphaButtons"
-      button.opts.hl_shortcut = "AlphaShortcut"
-    end
-    dashboard.section.header.opts.hl = "AlphaHeader"
-    dashboard.section.footer.opts.hl = "AlphaFooter"
-    dashboard.opts.layout[1].val = 10
-    return dashboard
-  end,
-  config = function(_, dashboard)
-    require("alpha").setup(dashboard.opts)
+    lazygit = { enabled = true },
 
-    vim.api.nvim_create_autocmd("User", {
-      pattern = "LazyVimStarted",
-      callback = function()
-        local stats = require("lazy").stats()
-        local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-        local version = "󰥱 v" .. vim.version().major .. "." .. vim.version().minor .. "." .. vim.version().patch
-        local plugins = "⚡ loaded " .. stats.count .. " plugins in " .. ms .. "ms"
-        --[[         local verses = {
+    dashboard = {
+      enabled = true,
+      preset = {
+        header = [[
+  ██╗  ██╗██████╗ ██╗██████╗  ██████╗ ███╗   ██╗███████╗
+  ██║  ██║██╔══██╗██║██╔══██╗██╔═══██╗████╗  ██║██╔════╝
+███████║██████╔╝██║██████╔╝██║   ██║██╔██╗ ██║█████╗
+██╔══██║██╔═══╝ ██║██╔═══╝ ██║   ██║██║╚██╗██║██╔══╝
+  ██║  ██║██║     ██║██║     ╚██████╔╝██║ ╚████║███████╗
+  ╚═╝  ╚═╝╚═╝     ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═══╝╚══════╝
+
+]],
+      },
+      headers = { "%s", align = "center" },
+    },
+
+    explorer = { enabled = true },
+
+    picker = {
+      sources = {
+        explorer = {
+          layout = { layout = { position = "left" } },
+        },
+        source = "files",
+      },
+    },
+  },
+  keys = {
+    { "<leader>g",  "<cmd>lua Snacks.lazygit()<CR>",            desc = "Open Lazygit" },
+    { "<Tab>",  "<cmd>lua Snacks.explorer()<CR>",           desc = "Open Explorer" },
+    { "<leader>ff", "<cmd>lua Snacks.picker.files()<CR>",       desc = "Open file picker" },
+    { "<leader>fg", "<cmd>lua Snacks.picker.grep()<CR>",        desc = "Open grep picker" },
+    { "<leader>fw", "<cmd>lua Snacks.picker.grep_word()<CR>",   desc = "Open grep word picker" },
+    { "<leader>fh", "<cmd>lua Snacks.picker.help()<CR>",        desc = "Open help" },
+    { "<leader>fo", "<cmd>lua Snacks.picker.recent()<CR>",      desc = "Open recent files" },
+    { "<leader>fs", "<cmd>lua Snacks.picker.lsp_symbols()<CR>", desc = "Pick LSP symbols" },
+    { "<leader>z",  "<cmd>lua Snacks.zen()<CR>",                desc = "Toggle Zen mode" },
+  },
+}
+
+--[[         local verses = {
           "Aku mengucap syukur kepada Allahku setiap kali aku mengingat kamu.\n" .. "Filipi 1:3",
 
           "Apa pun juga yang kamu perbuat, perbuatlah dengan segenap hatimu\n"
@@ -75,14 +88,3 @@ return {
             .. "Roma 12:12-13",
         }
  ]]
-        -- math.randomseed(os.time())
-        -- local randomVerse = verses[math.random(#verses)]
-
-        -- local footer = "\t\t\t\t" .. version .. "\t\t\t\t\t" .. plugins .. "\n\n" .. "\n\n" .. randomVerse
-        local footer = "\t" .. version .. "\t" .. plugins .. "\n\n" .. "\n\n"
-        dashboard.section.footer.val = footer
-        pcall(vim.cmd.AlphaRedraw)
-      end,
-    })
-  end,
-}

@@ -43,7 +43,7 @@ return {
   },
   {
     "norcalli/nvim-colorizer.lua",
-    enable = true,
+    -- enable = true,
     config = function()
       require("colorizer").setup()
     end
@@ -64,7 +64,7 @@ return {
     "ruifm/gitlinker.nvim",
     event = "User InGitRepo",
     config = function()
-    end,
+    end
   },
   -- Show git change (change, delete, add) signs in vim sign column
   {
@@ -102,13 +102,20 @@ return {
       },
     },
   },
-  {
-    "nvim-cmp",
-    dependencies = { "hrsh7th/cmp-emoji" },
-    opts = function(_, opts)
-      table.insert(opts.sources, { name = "emoji" })
-    end,
-  },
+  -- {
+  --   "nvim-cmp",
+  --   dependencies = { "cmp-emoji" },
+  --   opts = function(_, opts)
+  --     table.insert(opts.sources, { name = "emoji" })
+  --   end,
+  -- },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   -- follow latest release.
+  --   version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+  --   -- install jsregexp (optional!).
+  --   --build = "make install_jsregexp"
+  -- },
   {
     "ThePrimeagen/vim-be-good",
     cmd = "VimBeGood",

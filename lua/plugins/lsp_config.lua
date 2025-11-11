@@ -5,8 +5,17 @@ return {
   dependencies = {
     "neovim/nvim-lspconfig",
     "williamboman/mason.nvim",
+    --"nvimdev/lspsaga.nvim",
+
   },
   config = function()
+    -- Setup language servers.
+    -- local lspconfig = vim.lsp.config
+    local mason = require("mason")
+    local mason_lsp = require("mason-lspconfig")
+    local lspconfig = require("lspconfig")
+    local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
     require("mason").setup({
       ui = {
         border = "rounded",
@@ -23,6 +32,9 @@ return {
         "emmet_ls",
         "marksman",
         "lua_ls",
+        "pyright", -- fix and add python mason lsp
+        "jsonls",
+        "yamlls",
       },
     })
 
@@ -57,11 +69,6 @@ return {
       keymap.set("n", "<leader>ca", ":Lspsaga code_action<CR>", opts)
       keymap.set("n", "<leader>o", ":Lspsaga outline<CR>", opts)
     end
-
-    -- Setup language servers.
-    local lspconfig = require("lspconfig")
-    local capabilities = require("cmp_nvim_lsp").default_capabilities()
-
     -- special server with special config
     lspconfig.lua_ls.setup({
       on_attach = on_attach,
@@ -138,12 +145,13 @@ return {
     local servers = {
       "html",
       "cssls",
-      "astro",
-      "volar",
-      "gopls",
+      --"astro",
+      --"volar",
+      --"gopls",
       "marksman",
       "intelephense",
       "yamlls",
+      "pyright",
     }
 
     for _, server in pairs(servers) do

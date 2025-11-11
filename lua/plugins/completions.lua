@@ -1,95 +1,65 @@
 return {
   -- completion and lsp stuff
-  "hrsh7th/nvim-cmp",
-  event = { "BufReadPre", "BufNewFile", "CmdwinEnter" },
+  "Saghen/blink.cmp",
+  version = "1.*",
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
     "onsails/lspkind.nvim",
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
-    "hrsh7th/cmp-cmdline",
-    "hrsh7th/cmp-buffer",
-  },
-  config = function()
-    local cmp = require("cmp")
-    local lspkind = require("lspkind")
-    require("luasnip.loaders.from_vscode").lazy_load()
+    "xzbdmw/colorful-menu.nvim", },
+  event = "VeryLazy",
 
-    -- https://github.com/dpetka2001/dotfiles/blob/10d02517395783adb31bffab5447437b8f908e15/dot_config/nvim/lua/plugins/coding.lua#L47-L62
-    -- from a post in r/neovim - thanks!
-    local types = require("cmp.types")
-    local function deprioritize_snippets(entry1, entry2)
-      if entry1:get_kind() == types.lsp.CompletionItemKind.Snippet or entry1:get_kind() == types.lsp.CompletionItemKind.Text then
-        return false
-      end
-
-      if entry2:get_kind() == types.lsp.CompletionItemKind.Snippet then
-        return true
-      end
-    end
-
-    cmp.setup({
-      mapping = cmp.mapping.preset.insert({
-        ["<C-b>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-f>"] = cmp.mapping.scroll_docs(4),
-        ["<C-e>"] = cmp.mapping.abort(),
-        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-        ["<CR>"] = cmp.mapping.confirm({ select = false }),
-      }),
-
-      snippet = {
-        expand = function(args)
-          require("luasnip").lsp_expand(args.body)
-        end,
-      },
-
-      -- sort snippets
-      sorting = {
-        comparators = {
-          deprioritize_snippets,
-          cmp.config.compare.locality,
-          cmp.config.compare.recently_used,
-          cmp.config.compare.score,
-          cmp.config.compare.offset,
-          cmp.config.compare.order,
+  ---@module 'blink.cmp'
+  ---@type blink.cmp.Config
+  opts = {
+    sources = {
+      default = { "lsp", "path", "snippets", "buffer" },
+      providers = {
+        cmdline = {
+          enabled = function()
+            -- ignores cmdline completions when executing shell commands
+            local is_not_command_mode = vim.fn.getcmdtype() ~= ":"
+            local is_shell_command = vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
+            return is_not_command_mode or not is_shell_command
+          end,
         },
       },
-
-      window = {
-        documentation = { border = "rounded" },
-        completion = { border = "rounded" },
+    },
+    keymap = { preset = "super-tab" },
+    fuzzy = { implementation = "lua" },
+    cmdline = {
+      keymap = {
+        ["<Tab>"] = { "show", "accept" },
       },
+      completion = { menu = { auto_show = true } },
+    },
 
-      sources = cmp.config.sources({
-        { name = "nvim_lsp" },
-        { name = "luasnip" },
-        { name = "buffer" },
-        { name = "path",    priority = 10 },
-      }),
+    completion = {
+      documentation = { window = { border = "single" } },
 
-      formatting = {
-        format = lspkind.cmp_format({
-          mode = "symbol_text",
-          maxwidth = 60,         -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-          ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-        }),
+      -- nvim-cmp style completion menu
+      menu = {
+        border = "rounded",
+        draw = {
+          columns = {
+            { "label",     "label_description", gap = 1 },
+            { "kind_icon", gap = 1,             "kind" },
+          },
+
+          components = {
+            label = {
+              text = function(ctx)
+                return require("colorful-menu").blink_components_text(ctx)
+              end,
+              highlight = function(ctx)
+                return require("colorful-menu").blink_components_highlight(ctx)
+              end,
+            },
+          },
+        },
       },
-    })
-
-    cmp.setup.cmdline("/", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = {
-        { name = "buffer" },
-      },
-    })
-
-    cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
-      sources = cmp.config.sources({
-        { name = "path" },
-        { name = "cmdline" },
-      }),
-    })
-  end,
+    },
+    signature = { window = { border = "rounded" } },
+  },
 }

@@ -6,8 +6,8 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 keymap.set("n", "x", '"_x')
 --[[ keymap.set("n", "<C-w>", "<C-ww>") ]]
-keymap.set("n", "<TAB>", ":NvimTreeToggle<CR>", { silent = true, desc = "tab nvim tree sitter" })
-keymap.set("n", "<leader>l", ":LivePreview start<CR>", { silent = true, desc = "livepreview startto" })
+--keymap.set("n", "<TAB>", ":NvimTreeToggle<CR>", { silent = true, desc = "tab nvim tree sitter" })
+keymap.set("n", "<leader>p", ":LivePreview start<CR>", { silent = true, desc = "livepreview startto" })
 
 
 keymap.set("n", "+", "<C-a>")
@@ -22,7 +22,7 @@ keymap.set("n", "ss", ":split<CR><C-w>w", { silent = true, desc = "mindahin nvim
 keymap.set("n", "sv", ":vsplit<CR><C-w>w", { silent = true, desc = "mindahin nvim ke sebelah kanan ato kiri" })
 
 -- switch windows
-keymap.set("n", "<C-l>", "<C-W>w")
+keymap.set("n", "<C-l>", "<C-ww>")
 
 -- resize window
 keymap.set("n", "<C-w><left>", ":vertical resize -2<CR>")
