@@ -21,7 +21,7 @@ keymap.set("n", "ss", ":split<CR><C-w>w", { silent = true, desc = "mindahin nvim
 keymap.set("n", "sv", ":vsplit<CR><C-w>w", { silent = true, desc = "mindahin nvim ke sebelah kanan ato kiri" })
 
 -- switch windows
-keymap.set("n", "<C-k>", "<C-ww>")
+keymap.set("n", "<C-l>", "<C-w>w")
 
 -- resize window
 keymap.set("n", "<C-w><left>", ":vertical resize 0<CR>")
@@ -31,9 +31,9 @@ keymap.set("n", "<C-w><down>", ":resize 0<CR>")
 
 -- tabs
 local tabopts = { silent = true }
-keymap.set("n", "te", ":tabedit<CR>", tabopts)
-keymap.set("n", "tx", ":tabclose<CR>", tabopts)
-keymap.set("n", "<s-tab>", ":tabprev<Return>", tabopts)
+keymap.set("n", "<C-t>", ":tabedit<CR>", tabopts)
+keymap.set("n", "<C-w>", ":tabclose<CR>", tabopts)
+--keymap.set("n", "<s-tab>", ":tabprev<Return>", tabopts)
 
 -- Select all
 keymap.set("n", "<C-a>", "gg<S-v>G")
