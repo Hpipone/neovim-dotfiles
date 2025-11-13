@@ -48,7 +48,8 @@ keymap.set("n", "<C-c>", ":lua require('notify')('Bruh did you mean to press y?'
 keymap.set("n", "<C-v>", ":lua require('notify')('Bruh did you mean to press p?', 'info')<CR>", { silent = true })
 
 -- Code folding
-keymap.set("n", "<leader>mf", "zf}", {desc = "buat code folding sampe spasi"})
+keymap.set("n", "<leader>mf", "zf}", {desc = "[Normal] buat code folding sampe spasi"})
+keymap.set("v", "<leader>mf", "zf}", {desc = "[visual] buat code folding sampe spasi"})
 keymap.set("n", "<leader>ms", ":mkview<cr>", {desc = "save code folding"})
 keymap.set("n", "<leader>ml", ":loadview<cr>", {desc = "load code folding yang udh disave"})
 keymap.set("n", "<leader>mg", "zfg", {desc = "buat code folding ampe paling bawah"})
