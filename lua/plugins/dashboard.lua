@@ -15,7 +15,7 @@ return {
         easing = "quad",
       },
     },
-    bigfile = { enabled = true },
+    bigfile = { enabled = true, size = 2 * 1024 * 1024 },
     input = { enabled = true },
     notifier = { enabled = true },
     lazygit = { enabled = true },
