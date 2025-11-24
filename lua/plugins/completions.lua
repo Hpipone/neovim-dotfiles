@@ -4,8 +4,8 @@ return {
   version = "1.*",
   dependencies = {
     "onsails/lspkind.nvim",
-    "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
+    -- "L3MON4D3/LuaSnip",
+    -- "rafamadriz/friendly-snippets",
     "xzbdmw/colorful-menu.nvim", },
   event = "VeryLazy",
 
@@ -42,8 +42,8 @@ return {
         border = "rounded",
         draw = {
           columns = {
-            { "label",     "label_description", gap = 1 },
-            { "kind_icon", gap = 1,             "kind" },
+            { "label", "label_description", gap = 1 },
+            { "kind_icon", gap = 1, "kind" },
           },
 
           components = {
