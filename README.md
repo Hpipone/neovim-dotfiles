@@ -19,11 +19,29 @@ choco install lazygit
 ```shell
 winget install -e --id=JesseDuffield.lazygit
 ```
+
 * Termux
 ```shell
 apt install lazygit
 ```
+
 * Ubuntu/Debian
 ```shell
 sudo apt install lazygit
+```
+
+* Fedora/Amazon Linux/CentOS
+```shell
+sudo dnf copr enable dejan/lazygit
+sudo dnf install lazygit
+```
+
+* Arch Linux
+```shell
+sudo pacman -S lazygit
+```
+
+* Homebrew
+```shell
+brew install lazygit
 ```
