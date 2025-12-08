@@ -1,5 +1,4 @@
-* this is dotfiles just copied pasted with my friend and other
-
+# Neovim my dotfiles/config. for now
 ## Requirement
 ### install lazygit
 * Windows
@@ -45,3 +44,6 @@ sudo pacman -S lazygit
 ```shell
 brew install lazygit
 ```
+
+
+- this is dotfiles just copied pasted with my friend and other
