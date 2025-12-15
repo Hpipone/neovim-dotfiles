@@ -2,7 +2,8 @@ return {
   "akinsho/toggleterm.nvim",
   version = "*",
   keys = {
-    { "<C-j>", ":ToggleTerm<CR>", desc = "open terminal via ToggleTerm" },
+    { "<C-j>", ":ToggleTerm direction=float<CR>", desc = "open terminal via ToggleTerm" },
+    -- { "<C-j>", ":ToggleTerm<CR>", desc = "open terminal via ToggleTerm" },
     { "<leader>g", ":lua _lazygit_toggle()<CR>", desc = "open lazygit via ToggleTerm" },
   },
   config = function()
