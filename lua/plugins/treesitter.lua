@@ -25,6 +25,7 @@
                 "java",
                 "json",
                 "rust",
+                "ron",
                 "arduino",
                 "php",
                 "dart",

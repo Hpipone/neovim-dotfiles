@@ -85,10 +85,10 @@ if not vim.g.vscode then
       --     },
       --   },
       -- },
-      ui = {
-        border = "rounded",
-      },
-    })
+       ui = {
+         border = "rounded",
+       },
+     })
 
   vim.notify = require("notify")
 
