@@ -36,12 +36,17 @@ return {
       headers = { "%s", align = "center" },
     },
 
-    explorer = { enabled = true },
+    explorer = {
+      enabled = true,
+    },
 
     picker = {
       sources = {
         explorer = {
           layout = { layout = { position = "left" } },
+          hidden = true,
+          ignored = true,
+
         },
         source = "files",
       },
