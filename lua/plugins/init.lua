@@ -12,13 +12,11 @@ return {
   {
     'brianhuster/live-preview.nvim',
     dependencies = {
-      -- You can choose one of the following pickers
       'nvim-telescope/telescope.nvim',
       'ibhagwan/fzf-lua',
       'echasnovski/mini.pick',
     },
   },
-    --autopair and autotag for web dev
   {
     "windwp/nvim-autopairs",
     event = "InsertEnter",
@@ -43,73 +41,9 @@ return {
       require("colorizer").setup()
     end
   },
-  -- Auto format tools
-  {
-    "sbdchd/neoformat",
-    cmd = { "Neoformat" }
-  },
-  -- Git command inside vim
-  -- Better git log display
-  {
-    "rbong/vim-flog",
-    cmd = { "Flog" }
-  },
-  { "akinsho/git-conflict.nvim", version = "*", config = true },
-  {
-    "ruifm/gitlinker.nvim",
-    event = "User InGitRepo",
-    config = function()
-    end
-  },
-  -- Show git change (change, delete, add) signs in vim sign column
-  {
-    "sindrets/diffview.nvim",
-  },
-  {
-    "declancm/cinnamon.nvim",
-    event = "BufReadPre",
-    opts = {
-      keymaps = {
-        basic = true,
-        extra = true,
-      },
-      options = {
-        delay = 1,
-        step_size = {
-          -- Number of cursor/window lines moved per step
-          vertical = 3,
-          -- Number of cursor/window columns moved per step
-          horizontal = 2,
-        },
-      },
-    },
-  },
-
-  -- {
-  --   "dinhhuy258/git.nvim",
-  --   event = "BufReadPre",
-  --   opts = {
-  --     keymaps = {
-  --       -- Open blame window
-  --       blame = "<Leader>gb",
-  --       -- Open file/folder in git repository
-  --       browse = "<Leader>go",
-  --     },
-  --   },
-  -- },
-  -- {
-  --   "nvim-cmp",
-  --   dependencies = { "cmp-emoji" },
-  --   opts = function(_, opts)
-  --     table.insert(opts.sources, { name = "emoji" })
-  --   end,
-  -- },
   {
     "L3MON4D3/LuaSnip",
-    -- follow latest release.
-    version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-    -- install jsregexp (optional!).
-    --build = "make install_jsregexp"
+    version = "v2.*",
   },
   {
     "ThePrimeagen/vim-be-good",

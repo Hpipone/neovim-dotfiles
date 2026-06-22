@@ -13,6 +13,7 @@
             indent = { enable = true },
             ensured_installed = {
                 "python",
+                "astro",
                 "c",
                 "markdown",
                 "markdown_inlie",

@@ -1,23 +1,17 @@
 return {
-  -- completion and lsp stuff
   "Saghen/blink.cmp",
   version = "1.*",
   dependencies = {
     "onsails/lspkind.nvim",
-    -- "L3MON4D3/LuaSnip",
-    -- "rafamadriz/friendly-snippets",
     "xzbdmw/colorful-menu.nvim", },
   event = "VeryLazy",
 
-  ---@module 'blink.cmp'
-  ---@type blink.cmp.Config
   opts = {
     sources = {
       default = { "lsp", "path", "snippets", "buffer" },
       providers = {
         cmdline = {
           enabled = function()
-            -- ignores cmdline completions when executing shell commands
             local is_not_command_mode = vim.fn.getcmdtype() ~= ":"
             local is_shell_command = vim.fn.getcmdline():match("^[%%0-9,'<>%-]*!")
             return is_not_command_mode or not is_shell_command
@@ -37,7 +31,6 @@ return {
     completion = {
       documentation = { window = { border = "single" } },
 
-      -- nvim-cmp style completion menu
       menu = {
         border = "rounded",
         draw = {
