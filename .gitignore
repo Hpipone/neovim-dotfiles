@@ -1,2 +1,3 @@
 *.json
 lua/plugins/image.lua.bak
+lazy-lock.json

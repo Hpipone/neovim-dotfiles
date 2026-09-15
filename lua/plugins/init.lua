@@ -8,6 +8,10 @@ return {
       max_width = 60,
       render = "wrapped-compact",
     },
+    config = function(_, opts)
+      require("notify").setup(opts)
+      vim.notify = require("notify")
+    end,
   },
   {
     'brianhuster/live-preview.nvim',
@@ -31,15 +35,15 @@ return {
   },
   {
     "folke/which-key.nvim",
-    lazy = true,
     event = "VeryLazy",
+    opts = {},
   },
   {
-    "norcalli/nvim-colorizer.lua",
-    -- enable = true,
+    "NvChad/nvim-colorizer.lua",
+    event = { "BufReadPre", "BufNewFile" },
     config = function()
       require("colorizer").setup()
-    end
+    end,
   },
   {
     "L3MON4D3/LuaSnip",

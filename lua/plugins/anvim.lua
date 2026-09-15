@@ -1,4 +1,0 @@
-return {
-  "Hpipone/anvim",
-  opts = {},
-}

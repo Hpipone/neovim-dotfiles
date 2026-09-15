@@ -30,16 +30,17 @@ keymap.set("n", "<S-j>", ":resize -4<CR>")
 local tabopts = { silent = true }
 keymap.set("n", "<C-t>", ":tabedit<CR>", tabopts)
 -- keymap.set("n", "<C-o>", ":tabclose<CR>", tabopts)
-keymap.set("n", "<s-r>", ":tabprev<Return>", tabopts)
+keymap.set("n", "<S-r>", ":tabprev<Return>", tabopts)
 
--- Select all
-keymap.set("n", "<C-a>", "gg<S-v>G")
+-- Select all (avoid <C-a>: preserves increment number)
+keymap.set("n", "<leader>sa", "gg<S-v>G", { desc = "select all" })
 
 -- Save file
 keymap.set("n", "<C-s>", ":w<CR>")
 
 -- Keluar file & Quit all opened buffers
-keymap.set("n", "q", ":q<CR>")
+-- NOTE: bare `q` is intentionally NOT mapped to `:q` (preserves macro recording).
+keymap.set("n", "<leader>qq", ":q<CR>", { desc = "quit window" })
 keymap.set("n", "<leader>q", ":qa!<cr>", { silent = true, desc = "force quit nvim" })
 
 -- Alert wrong keymap

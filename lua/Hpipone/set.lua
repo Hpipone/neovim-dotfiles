@@ -14,10 +14,10 @@ opt.smartcase = true
 
 opt.colorcolumn = "80"
 opt.termguicolors = true
-opt.backspace = "2"
+opt.backspace = { "indent", "eol", "start" }
 opt.showcmd = true
 opt.scrolloff = 10
-opt.laststatus = 2
+opt.laststatus = 3
 opt.autowrite = true
 opt.cursorline = true
 opt.autoread = true

@@ -1,11 +1,16 @@
 return {
-  "nvim-neotest/neotest",
-  opts = {
-    adapters = {
-      ["neotest-python"] = {
-        dap = { justMyCode = false },
-        args = { "--capture=no" },
-        pytest_discover_instances = true,
+  {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/neotest-python",
+    },
+    opts = {
+      adapters = {
+        ["neotest-python"] = {
+          dap = { justMyCode = false },
+          args = { "--capture=no" },
+          pytest_discover_instances = true,
+        },
       },
     },
   },
@@ -13,11 +18,29 @@ return {
     "mfussenegger/nvim-dap-python",
     ft = "python",
     dependencies = { "mfussenegger/nvim-dap" },
-    config = function(_, _)
-      local ok, path_obj = pcall(require("mason-registry").get_package, "debugpy")
-      local path = ok and path_obj:get_install_path() or "" 
-      require("dap-python").setup(path .. "/venv/bin/python")
-      require("dap").defaults.python.justMyCode = false
+    config = function()
+      local python_path = vim.fn.exepath("python3")
+      if python_path == "" then
+        python_path = vim.fn.exepath("python")
+      end
+
+      local ok_registry, registry = pcall(require, "mason-registry")
+      if ok_registry then
+        local ok_pkg, pkg = pcall(registry.get_package, "debugpy")
+        if ok_pkg and pkg:is_installed() then
+          local install_path = pkg:get_install_path()
+          local candidate = install_path .. "/venv/bin/python"
+          if vim.fn.executable(candidate) == 1 then
+            python_path = candidate
+          end
+        end
+      end
+
+      require("dap-python").setup(python_path)
+      local ok_dap, dap = pcall(require, "dap")
+      if ok_dap then
+        dap.defaults.python.justMyCode = false
+      end
     end,
-  }
+  },
 }

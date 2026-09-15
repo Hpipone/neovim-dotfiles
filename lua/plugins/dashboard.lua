@@ -33,7 +33,6 @@ return {
 
 ]],
       },
-      headers = { "%s", align = "center" },
     },
 
     explorer = {
@@ -46,9 +45,7 @@ return {
           layout = { layout = { position = "left" } },
           hidden = true,
           ignored = true,
-
         },
-        source = "files",
       },
     },
   },

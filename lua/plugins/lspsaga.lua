@@ -1,6 +1,10 @@
 return {
   "nvimdev/lspsaga.nvim",
   event = { "BufReadPre", "BufNewFile" },
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "nvim-treesitter/nvim-treesitter",
+  },
   opts = {
     server_filetype_map = {},
     code_action = {

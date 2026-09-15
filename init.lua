@@ -4,7 +4,7 @@ require("Hpipone.keymaps")
 if not vim.g.vscode then
   -- bootstrap lazy.nvim
   local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-  if not vim.loop.fs_stat(lazypath) then
+  if not vim.uv.fs_stat(lazypath) then
     vim.fn.system({
       "git",
       "clone",
@@ -90,7 +90,8 @@ if not vim.g.vscode then
        },
      })
 
-  vim.notify = require("notify")
+  -- nvim-notify sets vim.notify itself in its own config (VeryLazy).
+  -- Do not require("notify") here: it would force eager loading.
 
   -- add custom filetypes here
   vim.filetype.add({

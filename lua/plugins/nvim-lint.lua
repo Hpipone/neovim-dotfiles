@@ -27,12 +27,7 @@ return {
       local cwd = vim.fn.getcwd()
 
       for _, file in ipairs(config_files) do
-        local ok, err = vim.loop.fs_stat(cwd .. "/" .. file)
-        if err then
-          return false
-        end
-
-        if ok then
+        if vim.uv.fs_stat(cwd .. "/" .. file) then
           return true
         end
       end
