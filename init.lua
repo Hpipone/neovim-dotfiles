@@ -16,6 +16,11 @@ if not vim.g.vscode then
   end
   vim.opt.rtp:prepend(lazypath)
 
+  -- vim.tbl_flatten is deprecated (removed in Nvim 0.13); shim it so plugins still using it stay quiet and future-proof
+  vim.tbl_flatten = function(list)
+    return vim.iter(list):flatten():totable()
+  end
+
   require("lazy").setup("plugins",
     {
       -- spec = {
