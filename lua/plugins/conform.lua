@@ -33,7 +33,7 @@ return {
           end
         end
 
-        return { timeout_ms = 200, lsp_format = "never" }, on_format
+        return { timeout_ms = 3000, lsp_format = "never" }, on_format
       end,
 
       format_after_save = function(bufnr)

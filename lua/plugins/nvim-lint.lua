@@ -5,13 +5,13 @@ return {
     local lint = require("lint")
 
     lint.linters_by_ft = {
-      javascript = { "eslint_d" },
-      typescript = { "eslint_d" },
-      typescriptreact = { "eslint_d" },
-      javascriptreact = { "eslint_d" },
-      vue = { "eslint_d" },
-      svelte = { "eslint_d" },
-      astro = { "eslint_d" },
+      javascript = { "eslint" },
+      typescript = { "eslint" },
+      typescriptreact = { "eslint" },
+      javascriptreact = { "eslint" },
+      vue = { "eslint" },
+      svelte = { "eslint" },
+      astro = { "eslint" },
     }
 
     local function eslint_config_exists()

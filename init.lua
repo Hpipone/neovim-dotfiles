@@ -97,6 +97,8 @@ if not vim.g.vscode then
 
   vim.notify = require("notify")
 
+  require("config.lsp")
+
   -- add custom filetypes here
   vim.filetype.add({
     extension = {

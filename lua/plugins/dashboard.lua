@@ -52,6 +52,12 @@ return {
       },
     },
   },
+  config = function(_, opts)
+    local snacks = require("snacks")
+    snacks.setup(opts)
+    vim.ui.input = require("snacks.input").input
+    vim.ui.select = snacks.picker.select
+  end,
   keys = {
     { "<leader>g",  "<cmd>lua Snacks.lazygit()<CR>",            desc = "Open Lazygit" },
     { "<Tab>",  "<cmd>lua Snacks.explorer()<CR>",           desc = "Open Explorer" },
