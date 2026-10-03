@@ -39,11 +39,12 @@
               enable = true,
             },
           },
-          -- Add clippy lints for Rust if using rust-analyzer
-          checkOnSave = diagnostics == "rust-analyzer",
+          checkOnSave = {
+            command = "clippy",
+          },
           -- Enable diagnostics if using rust-analyzer
           diagnostics = {
-            enable = diagnostics == "rust-analyzer",
+            enable = true,
           },
           procMacro = {
             enable = true,
@@ -69,8 +70,9 @@
     },
   },
   config = function(_, opts)
-    if LazyVim.has("mason.nvim") then
-      local codelldb = vim.fn.exepath("codelldb")
+    local has_mason = pcall(require, "mason-nvim")
+    local codelldb = vim.fn.exepath("codelldb")
+    if has_mason and codelldb ~= "" then
       local codelldb_lib_ext = io.popen("uname"):read("*l") == "Linux" and ".so" or ".dylib"
       local library_path = vim.fn.expand("$MASON/opt/lldb/lib/liblldb" .. codelldb_lib_ext)
       opts.dap = {
@@ -79,8 +81,9 @@
     end
     vim.g.rustaceanvim = vim.tbl_deep_extend("keep", vim.g.rustaceanvim or {}, opts or {})
     if vim.fn.executable("rust-analyzer") == 0 then
-      LazyVim.error(
+      vim.notify(
         "**rust-analyzer** not found in PATH, please install it.\nhttps://rust-analyzer.github.io/",
+        vim.log.levels.ERROR,
         { title = "rustaceanvim" }
       )
     end
