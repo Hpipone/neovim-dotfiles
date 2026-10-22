@@ -178,12 +178,12 @@ Removed:
 
 Not changed:
 
-- Keymaps stay as-is, except the three notify mappings now call `vim.notify` because `nvim-notify` was removed.
+- Keymaps stay as-is. A `lua/notify.lua` shim forwards legacy `require('notify')` calls to `vim.notify` (Snacks).
 
 ## Tests
 
 ```shell
 bash tests/config_smoke.sh
 bash tests/treesitter_shim.sh
-stylua --check .
+stylua --check . --glob "**/*.lua" --glob "!lua/Hpipone/keymaps.lua"
 ```

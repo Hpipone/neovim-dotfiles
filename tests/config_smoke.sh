@@ -9,8 +9,8 @@ cd "$(dirname "$0")/.." || exit 1
 fail=0
 out="$DIR/out"
 
-if grep -q "require('notify')" lua/Hpipone/keymaps.lua; then
-  echo "FAIL: keymaps masih memakai nvim-notify"
+if [ ! -f lua/notify.lua ]; then
+  echo "FAIL: shim notify tidak ada"
   fail=1
 fi
 
@@ -65,6 +65,7 @@ OUT="$out" timeout 60 nvim --headless -n -i NONE -u init.lua \
     "snacks_notify=" .. tostring(package.loaded["notify"] == nil and debug.getinfo(vim.notify).source:match("snacks") ~= nil),
     "comment_fg=" .. tostring(vim.api.nvim_get_hl(0, { name = "Comment" }).fg ~= nil),
     "nvim_notify_removed=" .. tostring(require("lazy.core.config").plugins["nvim-notify"] == nil),
+    "notify_shim=" .. tostring(pcall(require("notify"), "smoke", vim.log.levels.INFO)),
   }, vim.env.OUT)' \
   -c "qa!" >/dev/null 2>"$DIR/python.err"
 
@@ -77,6 +78,7 @@ else
   [ "$(grep '^snacks_notify=' "$out" | cut -d= -f2-)" = "true" ] || { echo "FAIL: vim.notify bukan Snacks"; fail=1; }
   [ "$(grep '^comment_fg=' "$out" | cut -d= -f2-)" = "true" ] || { echo "FAIL: highlight Comment tidak punya fg"; fail=1; }
   [ "$(grep '^nvim_notify_removed=' "$out" | cut -d= -f2-)" = "true" ] || { echo "FAIL: nvim-notify masih terdaftar"; fail=1; }
+  [ "$(grep '^notify_shim=' "$out" | cut -d= -f2-)" = "true" ] || { echo "FAIL: shim notify gagal"; fail=1; }
 fi
 
 if [ "$fail" -eq 0 ]; then
