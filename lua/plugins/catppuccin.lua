@@ -5,17 +5,11 @@ return {
   priority = 1000,
   config = function()
     require("catppuccin").setup({
-      custom_highlights = function(colors)
-        return {
-          Comment = { fg = colors.black0 },
-        }
-      end,
-
-      flavour = "mocha",          -- latte, frappe, macchiato, mocha
+      flavour = "mocha",
       transparent_background = true,
-      show_end_of_buffer = false, -- shows the '~' characters after the end of buffers
-      term_colors = true,         -- sets terminal colors (e.g. `g:terminal_color_0`)
-      styles = {                  -- Handles the styles of general hi groups (see `:h highlight-args`):
+      show_end_of_buffer = false,
+      term_colors = true,
+      styles = {
         conditionals = { "altfont" },
       },
       integrations = {
@@ -25,20 +19,4 @@ return {
 
     vim.cmd.colorscheme("catppuccin")
   end,
-} -- theme
---
---
--- Punyanya crazydog aka devaslife
--- return
--- {
---   {
---     "craftzdog/solarized-osaka.nvim",
---     lazy = true,
---     priority = 100,
---     opts = function()
---       return {
---         transparent = true,
---       }
---     end,
---   },
--- }
+}

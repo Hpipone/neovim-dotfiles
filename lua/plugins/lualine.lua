@@ -1,16 +1,16 @@
 return {
-  'nvim-lualine/lualine.nvim',
+  "nvim-lualine/lualine.nvim",
   config = function()
     local mode = {
-      'mode',
+      "mode",
       fmt = function(str)
-        return ' ' .. str
+        return " " .. str
         -- return ' ' .. str:sub(1, 1) -- displays only the first character of the mode
       end,
     }
 
     local filename = {
-      'filename',
+      "filename",
       file_status = true, -- displays file status (readonly status, modified status)
       path = 0, -- 0 = just filename, 1 = relative path, 2 = absolute path
     }
@@ -20,10 +20,10 @@ return {
     end
 
     local diagnostics = {
-      'diagnostics',
-      sources = { 'nvim_diagnostic' },
-      sections = { 'error', 'warn' },
-      symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+      "diagnostics",
+      sources = { "nvim_diagnostic" },
+      sections = { "error", "warn" },
+      symbols = { error = " ", warn = " ", info = " ", hint = " " },
       colored = true,
       update_in_insert = false,
       always_visible = true,
@@ -31,58 +31,60 @@ return {
     }
 
     local diff = {
-      'diff',
+      "diff",
       colored = true,
-      symbols = { added = ' ', modified = ' ', removed = ' ' }, -- changes diff symbols
+      symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
       cond = hide_in_width,
     }
 
-    require('lualine').setup {
+    require("lualine").setup({
       options = {
         icons_enabled = true,
-        theme = 'catppuccin-nvim', -- follows catppuccin flavour config
+        theme = "catppuccin-nvim", -- follows catppuccin flavour config
         -- Some useful glyphs:
         -- https://www.nerdfonts.com/cheat-sheet
         --        
-        section_separators = { left = '', right = '' },
-        component_separators = { left = '', right = '' },
-        disabled_filetypes = { 'alpha', 'neo-tree', 'dashboard' },
+        section_separators = { left = "", right = "" },
+        component_separators = { left = "", right = "" },
+        disabled_filetypes = { "alpha", "neo-tree", "dashboard" },
         always_divide_middle = true,
       },
       sections = {
         lualine_a = { mode },
-        lualine_b = { 'branch' },
-        lualine_c = { 'filetype' },
-        lualine_x = { diagnostics, diff, { 'encoding', cond = hide_in_width }, { 
+        lualine_b = { "branch" },
+        lualine_c = { "filetype" },
+        lualine_x = {
+          diagnostics,
+          diff,
+          { "encoding", cond = hide_in_width },
+          {
             function()
-                local os = vim.uv.os_uname().sysname
-                if os == 'Linux' then
-                    return ' ' -- Linux icon
-                elseif os == 'Darwin' then
-                    return ' ' -- macOS icon
-                elseif os == 'Windows' then
-                    return ' ' -- Windows icon
-                else
-                    return os
-                end
-            end
-
-            } 
+              local os = vim.uv.os_uname().sysname
+              if os == "Linux" then
+                return " " -- Linux icon
+              elseif os == "Darwin" then
+                return " " -- macOS icon
+              elseif os == "Windows" then
+                return " " -- Windows icon
+              else
+                return os
+              end
+            end,
+          },
         },
-        lualine_y = { 'location' },
-        lualine_z = { 'progress' },
+        lualine_y = { "location" },
+        lualine_z = { "progress" },
       },
       inactive_sections = {
         lualine_a = {},
         lualine_b = {},
-        lualine_c = { { 'filename', path = 1 } },
-        lualine_x = { { 'location', padding = 0 } },
+        lualine_c = { { "filename", path = 1 } },
+        lualine_x = { { "location", padding = 0 } },
         lualine_y = {},
         lualine_z = {},
       },
       tabline = {},
-      extensions = { 'fugitive' },
-    }
+      extensions = { "fugitive" },
+    })
   end,
 }
-

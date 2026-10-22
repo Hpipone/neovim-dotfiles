@@ -43,17 +43,15 @@ keymap.set("n", "q", ":q<CR>")
 keymap.set("n", "<leader>q", ":qa!<cr>", { silent = true, desc = "force quit nvim" })
 
 -- Alert wrong keymap
-keymap.set("n", "<C-z>", ":lua require('notify')('Bruh did you mean to press u?', 'info')<CR>", { silent = true })
-keymap.set("n", "<C-c>", ":lua require('notify')('Bruh did you mean to press y?', 'info')<CR>", { silent = true })
-keymap.set("n", "<C-v>", ":lua require('notify')('Bruh did you mean to press p?', 'info')<CR>", { silent = true })
+keymap.set("n", "<C-z>", ":lua vim.notify('Bruh did you mean to press u?', vim.log.levels.INFO)<CR>", { silent = true })
+keymap.set("n", "<C-c>", ":lua vim.notify('Bruh did you mean to press y?', vim.log.levels.INFO)<CR>", { silent = true })
+keymap.set("n", "<C-v>", ":lua vim.notify('Bruh did you mean to press p?', vim.log.levels.INFO)<CR>", { silent = true })
 
 -- Code folding
-keymap.set("n", "<leader>mf", "zf}", {desc = "[Normal] buat code folding sampe spasi"})
-keymap.set("v", "<leader>mf", "zf}", {desc = "[visual] buat code folding sampe spasi"})
-keymap.set("n", "<leader>ms", ":mkview<cr>", {desc = "save code folding"})
-keymap.set("n", "<leader>ml", ":loadview<cr>", {desc = "load code folding yang udh disave"})
-keymap.set("n", "<leader>mg", "zfg", {desc = "buat code folding ampe paling bawah"})
-keymap.set("n", "<leader>mo", "zO", {desc = "buka semua code folding"})
-keymap.set("n", "<leader>mm", "zM", {desc = "tutup semua code folding"})
-
-
+keymap.set("n", "<leader>mf", "zf}", { desc = "[Normal] buat code folding sampe spasi" })
+keymap.set("v", "<leader>mf", "zf}", { desc = "[visual] buat code folding sampe spasi" })
+keymap.set("n", "<leader>ms", ":mkview<cr>", { desc = "save code folding" })
+keymap.set("n", "<leader>ml", ":loadview<cr>", { desc = "load code folding yang udh disave" })
+keymap.set("n", "<leader>mg", "zfg", { desc = "buat code folding ampe paling bawah" })
+keymap.set("n", "<leader>mo", "zO", { desc = "buka semua code folding" })
+keymap.set("n", "<leader>mm", "zM", { desc = "tutup semua code folding" })

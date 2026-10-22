@@ -3,7 +3,8 @@ return {
   version = "1.*",
   dependencies = {
     "onsails/lspkind.nvim",
-    "xzbdmw/colorful-menu.nvim", },
+    "xzbdmw/colorful-menu.nvim",
+  },
   event = "VeryLazy",
 
   opts = {

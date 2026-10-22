@@ -22,22 +22,21 @@ return {
         "eslint.config.ts",
         "eslint.config.mts",
         "eslint.config.cts",
+        ".eslintrc",
+        ".eslintrc.js",
+        ".eslintrc.cjs",
+        ".eslintrc.json",
+        ".eslintrc.yml",
+        ".eslintrc.yaml",
       }
 
-      local cwd = vim.fn.getcwd()
+      local found = vim.fs.find(config_files, {
+        upward = true,
+        path = vim.fn.expand("%:p:h"),
+        type = "file",
+      })
 
-      for _, file in ipairs(config_files) do
-        local ok, err = vim.loop.fs_stat(cwd .. "/" .. file)
-        if err then
-          return false
-        end
-
-        if ok then
-          return true
-        end
-      end
-
-      return false
+      return found[1] ~= nil
     end
 
     local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })

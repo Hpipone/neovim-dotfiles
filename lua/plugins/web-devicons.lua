@@ -1,5 +1,4 @@
-return
-{
+return {
 
   "nvim-tree/nvim-web-devicons",
   opts = {
@@ -44,5 +43,5 @@ return
         return package.loaded["nvim-web-devicons"]
       end
     end,
-  }
+  },
 }

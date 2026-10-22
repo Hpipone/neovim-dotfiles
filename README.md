@@ -1,117 +1,165 @@
-# Neovim my dotfiles/config. for now
-## Requirement
+# Neovim dotfiles
+
+## Requirements
+
+- Neovim 0.11 or newer (tested on 0.12.5)
+- git
+- ripgrep and fd (picker search)
 - lazygit
-- Nerd Font (for icons)
+- Nerd Font v3 (icons)
 
----
+## Install config
 
-### install Nerd Font (required for icons)
-
-This config uses Nerd Font icons everywhere: statusline & separators (lualine), file icons (nvim-web-devicons, mini.icons), completion kinds (lspkind), git signs (gitsigns), pickers (telescope), dashboard (snacks, anvim), UI frames (lspsaga). Without a Nerd Font in your terminal every icon shows up as a hollow box (tofu).
-
-Recommended: **JetBrainsMono Nerd Font** — any Nerd Font v3 works, this is the one the config is tested with.
-
-1. Manual (all OS): download `JetBrainsMono.zip` from https://www.nerdfonts.com/font-downloader or https://github.com/ryanoasis/nerd-fonts/releases, unzip, install the `.ttf` files.
-2. Windows (winget):
 ```shell
-winget install -e --id DEVCOM.JetBrainsMonoNerdFont
+git clone https://github.com/Hpipone/neovim-dotfiles.git ~/.config/nvim
+nvim
 ```
-3. Windows (Scoop):
+
+Lazy.nvim installs the plugins automatically on first start.
+
+Update an existing install:
+
 ```shell
-scoop bucket add nerd-fonts
-scoop install JetBrainsMono-NF
+git -C ~/.config/nvim pull
+nvim --headless "+Lazy! sync" +qa
 ```
-4. macOS (Homebrew):
+
+## Install Neovim
+
+Arch Linux:
+
 ```shell
-brew install --cask font-jetbrains-mono-nerd-font
+sudo pacman -S neovim
 ```
-5. Linux (user install, no sudo):
+
+Debian/Ubuntu:
+
+```shell
+sudo apt update
+sudo apt install neovim
+```
+
+Fedora:
+
+```shell
+sudo dnf install neovim
+```
+
+macOS:
+
+```shell
+brew install neovim
+```
+
+Windows (PowerShell):
+
+```powershell
+winget install -e --id Neovim.Neovim
+```
+
+Termux:
+
+```shell
+pkg install neovim
+```
+
+## Install tools
+
+Arch Linux:
+
+```shell
+sudo pacman -S git curl unzip ripgrep fd lazygit
+```
+
+Debian/Ubuntu:
+
+```shell
+sudo apt update
+sudo apt install git curl unzip ripgrep fd-find lazygit
+```
+
+Fedora:
+
+```shell
+sudo dnf install git curl unzip ripgrep fd-find lazygit
+```
+
+macOS:
+
+```shell
+brew install git curl ripgrep fd lazygit
+```
+
+Windows (PowerShell):
+
+```powershell
+winget install -e --id Git.Git
+winget install -e --id BurntSushi.ripgrep.MSVC
+winget install -e --id sharkdp.fd
+winget install -e --id JesseDuffield.lazygit
+```
+
+Termux:
+
+```shell
+pkg install git curl unzip ripgrep fd lazygit
+```
+
+## Install Nerd Font
+
+Linux (user install, no sudo):
+
 ```shell
 mkdir -p ~/.local/share/fonts
-unzip JetBrainsMono.zip -d ~/.local/share/fonts
+curl -fLo /tmp/JetBrainsMono.zip https://github.com/ryanoasis/nerd-fonts/releases/latest/download/JetBrainsMono.zip
+unzip -o /tmp/JetBrainsMono.zip -d ~/.local/share/fonts
 fc-cache -fv
+rm /tmp/JetBrainsMono.zip
 ```
-6. Arch Linux (pacman):
+
+Arch Linux:
+
 ```shell
 sudo pacman -S ttf-jetbrains-mono-nerd
 ```
 
-Tip: icons look too wide? install the "Mono" variant (`JetBrainsMonoNerdFontMono`, family `JetBrainsMono Nerd Font Mono`) — symbols are cut to one cell.
+macOS:
 
-### set the font in your terminal
+```shell
+brew install --cask font-jetbrains-mono-nerd-font
+```
 
-Neovim cannot change the font by itself — it renders with whatever font the **terminal** uses, so select the Nerd Font in your terminal:
+Windows (PowerShell):
 
-- **Konsole (KDE):** Settings → Edit Current Profile → Appearance → Font → `JetBrainsMono Nerd Font`
-- **Windows Terminal:** `Ctrl+,` → select your profile → Appearance → Font face → `JetBrainsMono Nerd Font`
-- **GNOME Terminal:** Preferences → your profile → Text → Custom font
-- **kitty / Alacritty / WezTerm / foot / iTerm2:** set the config option for font family to `JetBrainsMono Nerd Font`
+```powershell
+winget install -e --id DEVCOM.JetBrainsMonoNerdFont
+```
 
-Restart the terminal (or open a new window) after changing it — sessions opened before the change keep the old font.
+Windows (Scoop):
 
-### verify icons
+```powershell
+scoop bucket add nerd-fonts
+scoop install JetBrainsMono-NF
+```
 
-Linux / macOS (bash, zsh, fish):
+Set the terminal font to `JetBrainsMono Nerd Font`, then restart the terminal.
+Kitty example:
+
+```shell
+mkdir -p ~/.config/kitty
+printf 'font_family JetBrainsMono Nerd Font\n' >> ~/.config/kitty/kitty.conf
+```
+
+Verify the font:
+
 ```shell
 printf '\uf449 | \ue0b0\n'
 ```
 
-Windows PowerShell:
-```powershell
-"$([char]0xF449) | $([char]0xE0B0)"
-```
+Expected output: an info icon and a powerline arrow.
 
-Expected: the info icon (from `\uf449`) and the powerline arrow (from `\ue0b0`). Boxes instead? In order of likelihood:
+## Changes
 
-1. Font not installed.
-2. Font installed but not selected in the terminal.
-3. Terminal session was opened before you changed the font → restart it.
-4. Linux only: emoji icons need an emoji font → `sudo apt install fonts-noto-color-emoji` (Debian/Ubuntu).
-
----
-
-### install lazygit
-
-1. Windows Scoop
-```shell
-# Add the extras bucket
-scoop bucket add extras
-
-# Install lazygit
-scoop install lazygit
-```
-2. Windows Chocolatey
-```shell
-choco install lazygit
-```
-3. Winget
-```shell
-winget install -e --id=JesseDuffield.lazygit
-```
-
-4. Termux
-```shell
-apt install lazygit
-```
-
-5. Ubuntu/Debian
-```shell
-sudo apt install lazygit
-```
-
-6. Fedora/Amazon Linux/CentOS
-```shell
-sudo dnf copr enable dejan/lazygit
-sudo dnf install lazygit
-```
-
-7. Arch Linux
-```shell
-sudo pacman -S lazygit
-```
-
-8. Homebrew
-```shell
-brew install lazygit
-```
-- this is dotfiles just copied pasted with my friend and other
+- Notifications, picker, and lazygit use Snacks. `nvim-notify`, Telescope keymaps, and the ToggleTerm lazygit wrapper were removed.
+- Python DAP no longer depends on Mason. It uses `python3` unless Mason provides `debugpy`.
+- ESLint linting detects flat config and legacy `.eslintrc` files.
