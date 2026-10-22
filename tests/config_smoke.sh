@@ -81,6 +81,24 @@ else
   [ "$(grep '^notify_shim=' "$out" | cut -d= -f2-)" = "true" ] || { echo "FAIL: shim notify gagal"; fail=1; }
 fi
 
+for spec in "rs:fn main(){let x=1;}" "go:package main
+func main(){x:=1;_=x}"; do
+  ext=${spec%%:*}
+  text=${spec#*:}
+  file="$DIR/format.$ext"
+  printf '%s\n' "$text" > "$file"
+  timeout 30 nvim --headless -n -i NONE -u init.lua \
+    -c "edit $file" -c "write" -c "sleep 1" -c "qa!" >/dev/null 2>&1
+  if [ "$ext" = "rs" ] && ! grep -q "^fn main() {" "$file"; then
+    echo "FAIL: rustfmt tidak jalan"
+    fail=1
+  fi
+  if [ "$ext" = "go" ] && ! grep -q "func main() {" "$file"; then
+    echo "FAIL: gofmt tidak jalan"
+    fail=1
+  fi
+done
+
 if [ "$fail" -eq 0 ]; then
   echo "PASS: config smoke test sehat"
 fi

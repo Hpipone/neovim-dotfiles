@@ -16,6 +16,8 @@ return {
       javascriptreact = { "prettierd", "prettier" },
       typescriptreact = { "prettierd", "prettier" },
       markdown = { "prettierd", "prettier" },
+      rust = { "rustfmt" },
+      go = { "gofmt" },
     },
     format_on_save = {
       timeout_ms = 3000,

@@ -164,6 +164,7 @@ Expected output: an info icon and a powerline arrow.
 - Python DAP uses `python3` unless Mason provides `debugpy`.
 - ESLint linting detects flat config and legacy `.eslintrc` files.
 - Rust DAP uses rustaceanvim auto-detection; the dead Mason/codelldb block was removed.
+- Format-on-save added for Rust (`rustfmt`) and Go (`gofmt`).
 - Conform uses `format_on_save` directly; the unsupported slow-formatter callback was removed.
 - Catppuccin uses default `Comment` highlight; the invalid `colors.black0` override was removed.
 
