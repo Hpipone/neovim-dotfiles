@@ -160,6 +160,30 @@ Expected output: an info icon and a powerline arrow.
 
 ## Changes
 
-- Notifications, picker, and lazygit use Snacks. `nvim-notify`, Telescope keymaps, and the ToggleTerm lazygit wrapper were removed.
-- Python DAP no longer depends on Mason. It uses `python3` unless Mason provides `debugpy`.
+- Notifications, picker, and lazygit use Snacks.
+- Python DAP uses `python3` unless Mason provides `debugpy`.
 - ESLint linting detects flat config and legacy `.eslintrc` files.
+- Rust DAP uses rustaceanvim auto-detection; the dead Mason/codelldb block was removed.
+- Conform uses `format_on_save` directly; the unsupported slow-formatter callback was removed.
+- Catppuccin uses default `Comment` highlight; the invalid `colors.black0` override was removed.
+
+Removed:
+
+- `nvim-notify`
+- Telescope keymaps
+- ToggleTerm lazygit wrapper
+- `lua/config/options.lua`
+- Commented LazyVim block in `init.lua`
+- `blade` formatter entry (prettier-blade plugin is not installed)
+
+Not changed:
+
+- Keymaps stay as-is, except the three notify mappings now call `vim.notify` because `nvim-notify` was removed.
+
+## Tests
+
+```shell
+bash tests/config_smoke.sh
+bash tests/treesitter_shim.sh
+stylua --check .
+```
