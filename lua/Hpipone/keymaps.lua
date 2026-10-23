@@ -7,7 +7,14 @@ keymap.set("n", "x", '"_x')
 
 --[[ keymap.set("n", "<C-w>", "<C-ww>") ]]
 --keymap.set("n", "<TAB>", ":NvimTreeToggle<CR>", { silent = true, desc = "tab nvim tree sitter" })
-keymap.set("n", "<leader>p", ":LivePreview start<CR>", { silent = true, desc = "livepreview startto" })
+keymap.set("n", "<leader>p", function()
+  local lp = require("livepreview")
+  if lp.is_running() then
+    vim.cmd("LivePreview close")
+  else
+    vim.cmd("LivePreview start")
+  end
+end, { silent = true, desc = "toggle live preview" })
 
 -- keymap.set("n", "+", "<C-a>")
 -- keymap.set("n", "_", "<C-x>")
